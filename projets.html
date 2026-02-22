@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GDG UTBM — Projets Hackathon 2026</title>
+  <meta name="description" content="Découvrez les projets disponibles du Hackathon Innovation 2026 — GDG UTBM" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --line: rgba(17, 24, 39, .12);
+      --shadow: 0 16px 40px rgba(15, 23, 42, .10);
+      --radius: 18px;
+      --blue: #4285F4;
+      --green: #34A853;
+      --yellow: #FBBC05;
+      --red: #EA4335;
+      --link: #1d4ed8;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: radial-gradient(900px 520px at 12% 0%, rgba(66, 133, 244, .12), transparent 60%),
+        radial-gradient(760px 480px at 88% 6%, rgba(52, 168, 83, .12), transparent 55%),
+        radial-gradient(760px 480px at 70% 92%, rgba(251, 188, 5, .10), transparent 55%),
+        radial-gradient(900px 520px at 20% 95%, rgba(234, 67, 53, .10), transparent 55%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .75);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stripes {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .stripe {
+      width: 10px;
+      height: 34px;
+      border-radius: 8px;
+    }
+
+    .stripe.b {
+      background: var(--blue);
+    }
+
+    .stripe.g {
+      background: var(--green);
+    }
+
+    .stripe.y {
+      background: var(--yellow);
+    }
+
+    .stripe.r {
+      background: var(--red);
+    }
+
+    .brandtext {
+      line-height: 1.15;
+    }
+
+    .brandtext .kicker {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brandtext .title {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, .04);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 13px;
+      transition: .15s transform ease, .15s background ease, .15s border-color ease;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(17, 24, 39, .08);
+      border-color: rgba(17, 24, 39, .20);
+      text-decoration: none;
+    }
+
+    .hero {
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .h1 {
+      font-size: 34px;
+      margin: 4px 0 10px;
+      letter-spacing: -.02em;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      margin: 0 0 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(10px);
+      padding: 18px;
+      transition: all .2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, .15);
+      border-color: rgba(66, 133, 244, .3);
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(66, 133, 244, .1);
+      border: 1px solid rgba(66, 133, 244, .3);
+      color: var(--link);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .project-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .project-company {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .project-description {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 14px;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, .04);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: .6;
+    }
+
+    .empty-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .empty-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(66, 133, 244, .35);
+      background: rgba(66, 133, 244, .08);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .70);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .small {
+      font-size: 12px;
+    }
+
+    .mono {
+      font-family: var(--mono);
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="stripes" aria-hidden="true">
+          <div class="stripe b"></div>
+          <div class="stripe g"></div>
+          <div class="stripe y"></div>
+          <div class="stripe r"></div>
+        </div>
+        <div class="brandtext">
+          <div class="kicker">Google Developer Group</div>
+          <div class="title">GDG UTBM</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="mailto:contact@gdgutbm.fr">✉️ Proposer un projet</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero card">
+      <div class="h1">Projets Hackathon 2026</div>
+      <p class="sub">
+        Découvrez les défis proposés par nos partenaires entreprises.<br/>
+        Rejoignez une équipe et transformez vos idées en prototypes innovants.
+      </p>
+      <div class="note">
+        💡 <strong>Pour les entreprises :</strong> Vous souhaitez proposer un projet ? <a href="mailto:contact@gdgutbm.fr">Contactez-nous</a> pour ajouter votre défi à la liste.
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projectsContainer">
+      <!-- Projects will be populated here -->
+    </div>
+
+    <!-- Empty State (shown by default) -->
+    <div class="card empty-state" id="emptyState">
+      <div class="empty-icon">🚀</div>
+      <div class="empty-title">Les projets arrivent bientôt</div>
+      <p class="empty-text">
+        Les entreprises partenaires sont en train de préparer leurs défis. Revenez prochainement pour découvrir les projets et les rejoindre !
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="small">
+        © GDG UTBM — Hackathon Innovation 2026
+      </div>
+      <div class="small">
+        <a href="mailto:contact@gdgutbm.fr">Contact</a> · <a href="./hackathon-reglement/">Règlement</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Example projects data structure (currently empty)
+    // Companies can add projects here as objects with this structure:
+    // {
+    //   id: "unique-id",
+    //   title: "Project Title",
+    //   company: "Company Name",
+    //   description: "Project description",
+    //   category: "Data / Cloud / XR",
+    //   tags: ["tag1", "tag2"],
+    //   link: "https://..."
+    // }
+
+    const projects = [];
+
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      const emptyState = document.getElementById('emptyState');
+
+      if (projects.length === 0) {
+        container.style.display = 'none';
+        emptyState.style.display = 'block';
+      } else {
+        container.style.display = 'grid';
+        emptyState.style.display = 'none';
+
+        container.innerHTML = projects.map(project => `
+          <div class="project-card">
+            <div class="project-badge">${project.category}</div>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-company">Proposé par ${project.company}</p>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tags">
+              ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Initial render
+    renderProjects();
+  </script>
+</body>
+
+</html>
